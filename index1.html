@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eco-Brick Manufacturing — Financial Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f5f0e8;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --amber: #c9a84c;
+    --muted: #9b9080;
+    --rule: #d8d0c0;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ───── HEADER ───── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 60px solid rgba(82,183,136,0.12);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 40%;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 30px solid rgba(201,168,76,0.1);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    border: 1px solid rgba(82,183,136,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--paper);
+    max-width: 700px;
+  }
+  h1 span { color: var(--green-light); }
+
+  .header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 28px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .header-meta span::before { content: '→ '; color: var(--amber); }
+
+  /* ───── THE ASK ───── */
+  .ask-bar {
+    background: var(--green);
+    color: white;
+    padding: 20px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .ask-bar .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .ask-bar .value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+  }
+  .ask-bar .divider {
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.25);
+  }
+  .ask-item { display: flex; flex-direction: column; gap: 2px; }
+
+  /* ───── MAIN GRID ───── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 64px;
+  }
+
+  /* ───── SECTION LABEL ───── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ───── HEADLINE STATS ───── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    margin-bottom: 64px;
+    border: 2px solid var(--ink);
+  }
+  .stat-card {
+    padding: 28px 24px;
+    background: white;
+    border-right: 2px solid var(--ink);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .stat-card:last-child { border-right: none; }
+  .stat-card:hover { background: var(--ink); }
+  .stat-card:hover .stat-label,
+  .stat-card:hover .stat-value,
+  .stat-card:hover .stat-note { color: white !important; }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .stat-value.green { color: var(--green); }
+  .stat-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ───── TWO COLUMN ───── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; }
+    main { padding: 40px 24px; }
+    header { padding: 40px 24px; }
+    .ask-bar { padding: 20px 24px; }
+  }
+
+  /* ───── INCOME TABLE ───── */
+  .income-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .income-table tr { border-bottom: 1px solid var(--rule); }
+  .income-table tr:last-child { border-bottom: none; }
+  .income-table td {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+  .income-table td:last-child {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+  .income-table .total-row td {
+    font-weight: 700;
+    font-size: 15px;
+    padding-top: 16px;
+    border-top: 2px solid var(--ink);
+  }
+  .income-table .subtotal td {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .income-table .highlight-row td {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ───── UNIT ECON VISUAL ───── */
+  .unit-econ {
+    background: var(--ink);
+    color: white;
+    padding: 32px;
+    border-radius: 2px;
+  }
+  .unit-econ .title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    margin-bottom: 24px;
+  }
+  .price-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { font-size: 12px; color: rgba(255,255,255,0.6); width: 130px; flex-shrink: 0; }
+  .bar-track {
+    flex: 1;
+    height: 24px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+  }
+  .bar-cost { background: rgba(255,255,255,0.25); width: 13.75%; min-width: fit-content; }
+  .bar-profit { background: var(--green); width: 86.25%; }
+
+  .margin-callout {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .margin-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--green-light);
+    line-height: 1;
+  }
+  .margin-text { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+  /* ───── FORECAST TABLE ───── */
+  .forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .forecast-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: right;
+    border-bottom: 2px solid var(--ink);
+  }
+  .forecast-table th:first-child { text-align: left; }
+  .forecast-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--rule);
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+  }
+  .forecast-table td:first-child {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    text-align: left;
+    color: var(--muted);
+  }
+  .forecast-table tr:hover td { background: rgba(0,0,0,0.03); }
+  .forecast-table .highlight td {
+    font-weight: 700;
+    color: var(--green);
+  }
+  .forecast-table .highlight td:first-child { color: var(--ink); }
+
+  /* ───── STRESS TEST ───── */
+  .stress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+  .stress-card {
+    border: 1px solid var(--rule);
+    padding: 20px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .stress-scenario {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .stress-result {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stress-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .check { color: var(--green); }
+
+  /* ───── IMPACT STRIP ───── */
+  .impact-strip {
+    background: var(--green);
+    color: white;
+    padding: 40px 64px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 0;
+  }
+  .impact-item { text-align: center; }
+  .impact-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--green-light);
+  }
+  .impact-label {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 4px;
+  }
+  .impact-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 32px;
+  }
+  @media (max-width: 700px) {
+    .impact-strip { grid-template-columns: 1fr; gap: 32px; }
+    .impact-divider { display: none; }
+  }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 24px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  footer span { color: rgba(255,255,255,0.7); }
+
+  /* ───── CAPEX BOX ───── */
+  .capex-box {
+    border: 2px solid var(--ink);
+    padding: 28px;
+    margin-bottom: 64px;
+  }
+  .capex-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  @media (max-width: 600px) { .capex-items { grid-template-columns: 1fr; } }
+  .capex-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  .capex-name { color: var(--muted); }
+  .capex-val { font-family: 'DM Mono', monospace; font-weight: 600; }
+  .capex-total {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0 0;
+    font-weight: 700;
+    font-size: 15px;
+    border-top: 2px solid var(--ink);
+  }
+
+  /* animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .stats-grid .stat-card:nth-child(1) { animation-delay: 0.05s; }
+  .stats-grid .stat-card:nth-child(2) { animation-delay: 0.1s; }
+  .stats-grid .stat-card:nth-child(3) { animation-delay: 0.15s; }
+  .stats-grid .stat-card:nth-child(4) { animation-delay: 0.2s; }
+  .stats-grid .stat-card:nth-child(5) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="badge">Hult Prize 2026 · Semi-Finals Submission</div>
+  </div>
+  <h1>ECO-BRICK<br><span>MANUFACTURING</span></h1>
+  <div class="header-meta">
+    <div>Savar Industrial Area, Dhaka</div>
+    <div>20,000 m² Facility</div>
+    <div>Tunnel Kiln · 500,000 bricks/day capacity</div>
+    <div>100% Equity · No Debt</div>
+  </div>
+</header>
+
+<!-- THE ASK -->
+<div class="ask-bar">
+  <div class="ask-item">
+    <div class="label">We Are Asking For</div>
+    <div class="value">BDT 3.5 Crore</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ask-item">
+    <div class="label">Payback Period</div>
+    <div class="value">11 Months</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ask-item">
+    <div class="label">3-Year IRR</div>
+    <div class="value">61.8%</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ask-item">
+    <div class="label">3-Year Cumulative Cash</div>
+    <div class="value">BDT 125 Crore</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ask-item">
+    <div class="label">Structure</div>
+    <div class="value">Equity · Debt-Free</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- HEADLINE NUMBERS -->
+  <div class="section-label">Key Metrics at a Glance</div>
+  <div class="stats-grid">
+    <div class="stat-card fade-in">
+      <div class="stat-label">Monthly Revenue</div>
+      <div class="stat-value green">12.48</div>
+      <div class="stat-note">BDT Crore @ 80% capacity</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-label">Operating Margin</div>
+      <div class="stat-value">38.8%</div>
+      <div class="stat-note">Industry avg: 15–20%</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-label">Break-Even</div>
+      <div class="stat-value">0.7%</div>
+      <div class="stat-note">of capacity — extreme safety buffer</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-label">Daily Output</div>
+      <div class="stat-value">400K</div>
+      <div class="stat-note">Bricks/day @ 80% utilization</div>
+    </div>
+    <div class="stat-card fade-in">
+      <div class="stat-label">Selling Price</div>
+      <div class="stat-value">BDT 12</div>
+      <div class="stat-note">vs. BDT 1.65 variable cost</div>
+    </div>
+  </div>
+
+  <!-- UNIT ECONOMICS + MONTHLY P&L -->
+  <div class="section-label">Unit Economics & Monthly P&L</div>
+  <div class="two-col">
+
+    <!-- UNIT ECON -->
+    <div class="unit-econ">
+      <div class="title">Per Brick — What Happens to BDT 12</div>
+      <div class="price-bar">
+        <div class="bar-row">
+          <div class="bar-label">Cost (BDT 1.65)</div>
+          <div class="bar-track">
+            <div class="bar-fill bar-cost">13.75%</div>
+          </div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Profit (BDT 10.35)</div>
+          <div class="bar-track">
+            <div class="bar-fill bar-profit">86.25%</div>
+          </div>
+        </div>
+      </div>
+      <div class="margin-callout">
+        <div class="margin-num">86%</div>
+        <div class="margin-text">Contribution margin per brick.<br>Every unit sold generates outsized value.</div>
+      </div>
+    </div>
+
+    <!-- MONTHLY P&L -->
+    <div>
+      <table class="income-table">
+        <tr>
+          <td>Monthly Revenue</td>
+          <td>BDT 12,48,00,000</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Direct Materials</td>
+          <td>− 1,63,28,000</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Direct Labor</td>
+          <td>− 8,30,000</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Fixed Costs</td>
+          <td>− 4,40,000</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Operating Profit (EBITDA)</td>
+          <td>10,72,02,000</td>
+        </tr>
+        <tr class="subtotal">
+          <td>Corporate Tax (22.5%)</td>
+          <td>− 2,41,20,450</td>
+        </tr>
+        <tr class="total-row">
+          <td>Monthly Net Profit</td>
+          <td>BDT 8,30,81,550</td>
+        </tr>
+      </table>
+      <div style="margin-top: 16px; padding: 14px; background: rgba(45,106,79,0.08); border-left: 3px solid var(--green); font-size: 13px; color: var(--green);">
+        Fixed costs are just <strong>0.4% of revenue</strong> — every rupee of new sales goes almost entirely to profit.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAPEX -->
+  <div class="section-label">Capital Investment</div>
+  <div class="capex-box" style="margin-bottom: 64px;">
+    <div style="font-size: 13px; color: var(--muted);">Total Investment Required — <strong style="color: var(--ink);">BDT 3.65 Crore (USD 335,000)</strong></div>
+    <div class="capex-items">
+      <div class="capex-item"><span class="capex-name">Tunnel Kiln System (turnkey)</span><span class="capex-val">2,00,00,000</span></div>
+      <div class="capex-item"><span class="capex-name">Land & Building (20,000 m²)</span><span class="capex-val">35,00,000</span></div>
+      <div class="capex-item"><span class="capex-name">Curing Infrastructure</span><span class="capex-val">30,00,000</span></div>
+      <div class="capex-item"><span class="capex-name">Material Handling</span><span class="capex-val">20,00,000</span></div>
+      <div class="capex-item"><span class="capex-name">Working Capital (2 months)</span><span class="capex-val">55,00,000</span></div>
+      <div class="capex-item"><span class="capex-name">Utilities, Permits & Contingency</span><span class="capex-val">25,00,000</span></div>
+      <div class="capex-total">
+        <span>Total CAPEX</span>
+        <span>BDT 3,65,00,000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-YEAR FORECAST -->
+  <div class="section-label">3-Year Financial Forecast</div>
+  <table class="forecast-table" style="margin-bottom: 64px;">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Year 1</th>
+        <th>Year 2</th>
+        <th>Year 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Capacity Utilization</td>
+        <td>65%</td>
+        <td>85%</td>
+        <td>95%</td>
+      </tr>
+      <tr>
+        <td>Units Sold</td>
+        <td>81.1M</td>
+        <td>110.5M</td>
+        <td>123.5M</td>
+      </tr>
+      <tr>
+        <td>Revenue (BDT Crore)</td>
+        <td>97.3</td>
+        <td>136.2</td>
+        <td>153.2</td>
+      </tr>
+      <tr>
+        <td>Operating Profit</td>
+        <td>35.3</td>
+        <td>52.9</td>
+        <td>60.1</td>
+      </tr>
+      <tr class="highlight">
+        <td>Net Profit (after tax)</td>
+        <td>27.4</td>
+        <td>41.0</td>
+        <td>46.6</td>
+      </tr>
+      <tr>
+        <td>Net Margin</td>
+        <td>28.1%</td>
+        <td>30.1%</td>
+        <td>30.4%</td>
+      </tr>
+      <tr class="highlight">
+        <td>Cumulative Cash (BDT Crore)</td>
+        <td>37.5</td>
+        <td>78.5</td>
+        <td>125.1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- STRESS TEST -->
+  <div class="section-label">Stress Test — Still Profitable Under Every Scenario</div>
+  <div class="stress-grid">
+    <div class="stress-card">
+      <div class="stress-scenario">Base Case</div>
+      <div class="stress-result">BDT 10.72 Cr</div>
+      <div class="stress-tag">✓ Profitable</div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-scenario">Materials +20%</div>
+      <div class="stress-result">BDT 10.40 Cr</div>
+      <div class="stress-tag">✓ Profitable</div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-scenario">Price cut −15%</div>
+      <div class="stress-result">BDT 8.90 Cr</div>
+      <div class="stress-tag">✓ Profitable</div>
+    </div>
+    <div class="stress-card">
+      <div class="stress-scenario">Fixed costs +50%</div>
+      <div class="stress-result">BDT 10.50 Cr</div>
+      <div class="stress-tag">✓ Profitable</div>
+    </div>
+    <div class="stress-card" style="border-color: var(--ink); border-width: 2px;">
+      <div class="stress-scenario">All three combined (worst case)</div>
+      <div class="stress-result">BDT 8.02 Cr</div>
+      <div class="stress-tag">✓ Still Profitable</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip">
+  <div class="impact-item">
+    <div class="impact-num">399K</div>
+    <div class="impact-label">Tons CO₂ avoided — Year 1</div>
+  </div>
+  <div class="impact-divider"></div>
+  <div class="impact-item">
+    <div class="impact-num">1.27M</div>
+    <div class="impact-label">Tons CO₂ avoided — 3 Years</div>
+  </div>
+  <div class="impact-divider"></div>
+  <div class="impact-item">
+    <div class="impact-num">60+</div>
+    <div class="impact-label">Direct jobs created</div>
+  </div>
+</div>
+
+<footer>
+  <div>Hult Prize 2026 · Semi-Finals · Savar Industrial Area, Dhaka</div>
+  <div>Prepared: <span>February 16, 2026</span></div>
+  <div>Eco-Brick Manufacturing Financial Plan</div>
+</footer>
+
+</body>
+</html>
