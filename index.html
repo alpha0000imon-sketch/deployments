@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bricko · sustainable brick · pitch deck</title>
-  <!-- preconnect & fonts -->
+  <title>Bricko · sustainable brick · visual story</title>
+  <!-- fonts & icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-  <!-- design tokens & base style -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -17,470 +17,546 @@
     }
 
     :root {
-      /* 60-30-10 : calm, earthy + fresh accent */
-      --color-bg: #f8f6f2;           /* soft limestone */
-      --color-surface: #ffffff;
-      --color-dominant: #2f3e2e;      /* deep forest */
-      --color-secondary: #5b7f6c;     /* muted green */
-      --color-accent: #d9734c;        /* warm terracotta */
-      --color-text: #1e2b1e;
-      --color-text-light: #4a5a4a;
-      --color-border: rgba(47, 62, 46, 0.1);
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 40, 0, 0.03);
-      --shadow-elevated: 0 20px 40px -12px rgba(33, 53, 33, 0.2);
-      --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 2rem;
-      --space-lg: 4rem;
-      --max-width: 1280px;
-      --border-radius: 28px;
+      --deep-earth: #2C3E2F;
+      --clay: #B86B3F;
+      --sand: #F4E6D6;
+      --mist: #E7EFE5;
+      --charcoal: #1F2A20;
+      --pure-white: #FFFFFF;
+      --accent-glow: #E27D5A;
+      --space-unit: 1rem;
+      --border-radius-card: 2rem;
+      --border-radius-sm: 1rem;
+      --shadow-elevation: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      --transition-smooth: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     body {
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      line-height: 1.5;
+      background-color: var(--sand);
+      background-image: radial-gradient(circle at 10% 20%, rgba(184, 107, 63, 0.03) 0%, transparent 30%);
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
-      font-size: 1rem;
-      letter-spacing: 0.01em;
-      -webkit-font-smoothing: antialiased;
-      padding: var(--space-md) 0 var(--space-lg);
+      color: var(--charcoal);
+      line-height: 1.5;
+      padding: 2rem 1rem;
     }
 
     .container {
-      max-width: var(--max-width);
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 0 var(--space-md);
     }
 
-    /* typography hierarchy */
+    /* typography */
     h1, h2, h3 {
       font-weight: 500;
       letter-spacing: -0.02em;
-      line-height: 1.2;
     }
 
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-size: clamp(3rem, 8vw, 5.5rem);
       font-weight: 600;
-      color: var(--color-dominant);
-      margin-bottom: var(--space-xs);
+      background: linear-gradient(135deg, var(--deep-earth) 0%, var(--clay) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
     }
 
     h2 {
-      font-size: 2rem;
-      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
       display: inline-block;
-      border-bottom: 3px solid var(--color-accent);
-      padding-bottom: 0.25rem;
-      margin-bottom: var(--space-md);
-      color: var(--color-dominant);
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--clay);
+      border-radius: 4px;
     }
 
     h3 {
       font-size: 1.4rem;
-      font-weight: 500;
-      color: var(--color-secondary);
-      margin-bottom: var(--space-sm);
+      color: var(--deep-earth);
+      margin-bottom: 0.5rem;
     }
 
-    .section-subhead {
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: var(--color-text-light);
-      margin-top: -0.5rem;
-      margin-bottom: var(--space-md);
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: var(--border-radius-card);
+      box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.2);
     }
 
-    /* cards & surfaces */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-md);
-      margin-bottom: var(--space-lg);
+    /* hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4rem;
+      padding: 2rem 0;
     }
 
-    .card {
-      background: var(--color-surface);
-      border-radius: var(--border-radius);
-      padding: var(--space-md);
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      border: 1px solid var(--color-border);
+    .hero-left {
+      max-width: 600px;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-elevated);
-    }
-
-    .card strong {
-      color: var(--color-accent);
-      font-weight: 500;
-    }
-
-    /* tables – clean, minimal */
-    .table-wrapper {
-      overflow-x: auto;
-      margin: var(--space-md) 0;
-      border-radius: 20px;
-      background: var(--color-surface);
-      padding: 0.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9rem;
-      min-width: 600px;
-    }
-
-    th {
-      background: var(--color-dominant);
+    .hero-badge {
+      background: var(--clay);
       color: white;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      text-align: left;
-      padding: 0.75rem 1rem;
-    }
-
-    td {
-      padding: 0.7rem 1rem;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* highlight accent rows */
-    .accent-row {
-      background: rgba(217, 115, 76, 0.04);
-    }
-
-    /* badges / tags */
-    .pill {
-      display: inline-block;
-      background: var(--color-accent);
-      color: white;
-      padding: 0.2rem 1rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 40px;
-      font-size: 0.75rem;
+      font-size: 0.9rem;
       font-weight: 400;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-right: 0.5rem;
     }
 
-    .pill.green {
-      background: var(--color-secondary);
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
-    .stat-big {
-      font-size: 2.8rem;
-      font-weight: 300;
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--deep-earth);
       line-height: 1;
-      color: var(--color-dominant);
     }
 
     .stat-label {
       font-size: 0.9rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-text-light);
+      letter-spacing: 0.1em;
+      color: var(--charcoal);
+      opacity: 0.7;
     }
 
-    /* micro-interactions */
-    a, .button-ish {
-      transition: var(--transition);
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--color-border);
-      margin: var(--space-lg) 0 var(--space-md);
-    }
-
-    /* color blocks & accent */
-    .accent-bg-light {
-      background: rgba(217, 115, 76, 0.05);
-      border-radius: var(--border-radius);
-      padding: var(--space-md);
-    }
-
-    /* list styling */
-    ul, ol {
-      padding-left: 1.5rem;
-      margin: 0.5rem 0 1rem;
-    }
-
-    li {
-      margin-bottom: 0.3rem;
-    }
-
-    ::selection {
-      background: var(--color-accent);
-      color: white;
-    }
-
-    /* header area */
-    .hero {
+    /* visual graphs / data containers */
+    .graph-bar {
       display: flex;
-      flex-direction: column;
-      margin-bottom: var(--space-lg);
-    }
-
-    .overline {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: var(--color-secondary);
-    }
-
-    .flex-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       align-items: center;
-      gap: var(--space-sm);
+      gap: 1rem;
+      margin: 0.5rem 0;
     }
 
-    /* numbers / kpi */
-    .kpi-grid {
+    .bar-label {
+      width: 120px;
+      font-weight: 400;
+    }
+
+    .bar-fill {
+      height: 24px;
+      background: var(--clay);
+      border-radius: 40px;
+      transition: width 0.5s;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .bar-bg {
+      flex: 1;
+      background: rgba(184, 107, 63, 0.2);
+      border-radius: 40px;
+      height: 24px;
+    }
+
+    .metric-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-sm);
-      margin: var(--space-md) 0;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
 
-    @media (max-width: 640px) {
-      .kpi-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .metric-card {
+      background: var(--pure-white);
+      border-radius: var(--border-radius-sm);
+      padding: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(44, 62, 47, 0.1);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-elevation);
+    }
+
+    .progress-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: conic-gradient(var(--clay) 0deg 290deg, #e0d6cc 290deg 360deg);
+      margin-bottom: 1rem;
+    }
+
+    /* timeline */
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      margin: 3rem 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clay) 0%, var(--deep-earth) 100%);
+      z-index: 1;
+    }
+
+    .timeline-step {
+      background: white;
+      border-radius: 40px;
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 2;
+      border: 2px solid var(--clay);
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* table enhancement */
+    .table-wrapper {
+      border-radius: 24px;
+      background: white;
+      padding: 1rem;
+      box-shadow: 0 20px 30px -15px rgba(44,62,47,0.2);
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th {
+      background: var(--deep-earth);
+      color: white;
+      font-weight: 400;
+      padding: 0.8rem 1rem;
+    }
+
+    td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .highlight-row {
+      background: rgba(184, 107, 63, 0.1);
+      font-weight: 500;
+    }
+
+    /* button / novelty */
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* chip */
+    .chip {
+      background: var(--deep-earth);
+      color: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin: 0.2rem;
+    }
+
+    .chip.clay {
+      background: var(--clay);
+    }
+
+    /* icon list */
+    .icon-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .icon-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .icon-list i {
+      color: var(--clay);
+      width: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    /* layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
     }
 
-    .kpi-item {
-      background: var(--color-surface);
-      border-radius: 20px;
-      padding: var(--space-sm);
-      text-align: center;
-      border: 1px solid var(--color-border);
+    .bg-white-soft {
+      background: rgba(255,255,255,0.6);
+      border-radius: var(--border-radius-card);
+      padding: 2rem;
+      backdrop-filter: blur(4px);
     }
 
-    /* footer note */
-    .footnote {
+    .footer {
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--color-text-light);
-      margin-top: var(--space-lg);
-      border-top: 1px solid var(--color-border);
-      padding-top: var(--space-md);
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(44,62,47,0.2);
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- hero / title block -->
+  <!-- hero section with attention-grabbing visual -->
   <div class="hero">
-    <span class="overline">waste‑to‑value · made in Bangladesh</span>
-    <h1>Bricko</h1>
-    <div class="flex-row">
-      <div style="max-width: 600px;">
-        <p style="font-size: 1.4rem; font-weight: 300; color: var(--color-secondary);">the sustainable brick from recycled aggregate, slag & cement · replaces topsoil kilns</p>
-        <p style="margin-top: 0.5rem;">✔ no fertile soil · ✔ 58% less winter pollution · ✔ 80–90% CO₂ reduction · ✔ circular construction</p>
+    <div class="hero-left">
+      <span class="hero-badge"><i class="fas fa-leaf" style="margin-right: 0.5rem;"></i>waste‑to‑value innovation</span>
+      <h1>Bricko<br>redefining the brick</h1>
+      <p style="font-size: 1.4rem; margin: 1rem 0 2rem; font-weight: 300;">No topsoil. No coal. 80‑90% less CO₂. <br> circular construction waste → premium brick.</p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">11 <span style="font-size:1.5rem;">mo</span></div>
+          <div class="stat-label">payback</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">58<span style="font-size:1.5rem;">%</span></div>
+          <div class="stat-label">less winter pollution</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">397<span style="font-size:1.2rem;">kt</span></div>
+          <div class="stat-label">CO₂ avoided / yr</div>
+        </div>
       </div>
-      <div style="background: var(--color-dominant); padding: 1rem 2rem; border-radius: 60px; color: white; text-align: center;">
-        <span class="stat-big" style="color: white;">11 mo</span><br>
-        <span class="stat-label" style="color: rgba(255,255,255,0.7);">payback</span>
+    </div>
+    <div class="float-animation" style="background: var(--pure-white); border-radius: 50px; padding: 1.5rem; box-shadow: var(--shadow-elevation); max-width: 300px;">
+      <i class="fas fa-chart-line" style="font-size: 3rem; color: var(--clay); margin-bottom: 1rem;"></i>
+      <h3 style="margin:0;">financial pulse</h3>
+      <div style="display: flex; justify-content: space-between; margin: 1rem 0;">
+        <span>IRR 61.8%</span>
+        <span>⚡</span>
       </div>
+      <div class="graph-bar">
+        <span class="bar-label">EBITDA margin</span>
+        <div class="bar-bg"><div class="bar-fill" style="width:36%"></div></div>
+        <span>36%</span>
+      </div>
+      <div class="graph-bar">
+        <span class="bar-label">net margin</span>
+        <div class="bar-bg"><div class="bar-fill" style="width:28%"></div></div>
+        <span>28%</span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem;"><i class="fas fa-coins" style="color: var(--clay);"></i> 3.5 cr equity · debt free</p>
     </div>
   </div>
 
-  <!-- SITUATION ANALYSIS : PESTEL quick cards -->
-  <h2>context · PESTEL</h2>
-  <div class="card-grid">
-    <div class="card"><strong>⚖️ Political & Legal</strong> — SDG 2030 plan, brick kiln closures, National Building Code 2020 supports alternative materials. Tax incentives possible but kiln lobby exists.</div>
-    <div class="card"><strong>📈 Economic</strong> — construction 8.2% GDP, 8‑10% annual growth, $15Bn real estate, Padma Bridge, Metro Rail boost demand.</div>
-    <div class="card"><strong>👥 Social</strong> — rapid urbanisation (500k/yr), health awareness (58% PM2.5 from kilns), 1M kiln workers, cultural red‑brick preference → education needed.</div>
-    <div class="card"><strong>⚙️ Technological</strong> — low tech adoption, but 185M mobile connections, online marketplaces (ClickBrick), green imports dominate.</div>
-    <div class="card"><strong>🌱 Environmental</strong> — 1% arable land lost/yr, 9.8Mt CO₂, 22kt daily waste (30% construction debris), climate risk #7.</div>
-    <div class="card"><strong>📜 Legal</strong> — Brick Burning Control Act 2019, Solid Waste Mgmt Rules 2021, import duty exemptions for green tech.</div>
-  </div>
-
-  <!-- SWOT & PROBLEM short -->
-  <div class="flex-row" style="gap: var(--space-lg); align-items: stretch;">
-    <div style="flex: 1;">
-      <h2>strengths & opportunities</h2>
-      <ul style="background: var(--color-surface); padding: 1.5rem 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow-sm);">
-        <li>✔ waste‑to‑value (SDG alignment)</li>
-        <li>✔ ultra‑low raw material cost (demolition waste)</li>
-        <li>✔ machine‑pressed precision, high consistency</li>
-        <li>✔ first‑mover in organised eco‑bricks</li>
-        <li>✔ regulatory tailwind (kiln phase‑out)</li>
-        <li>✔ green building boom (LEED + IGBC)</li>
-        <li>✔ city corps need waste solutions</li>
-        <li>✔ carbon credits & export potential</li>
+  <!-- problem + opportunity visual -->
+  <div class="grid-2" style="margin-bottom: 4rem;">
+    <div class="bg-white-soft">
+      <h2 style="margin-top:0;">the kiln disaster</h2>
+      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+        <div style="flex:1;">
+          <div class="progress-circle" style="background: conic-gradient(var(--clay) 0deg 209deg, #ddd 209deg 360deg);"></div>
+          <p><strong>58%</strong> of Dhaka winter PM2.5 from brick kilns</p>
+        </div>
+        <div style="flex:1;">
+          <div class="progress-circle" style="background: conic-gradient(var(--deep-earth) 0deg 36deg, #ddd 36deg 360deg);"></div>
+          <p><strong>1%</strong> agricultural land lost yearly</p>
+        </div>
+      </div>
+      <ul class="icon-list" style="margin-top: 1.5rem;">
+        <li><i class="fas fa-mountain"></i> 9.8 Mt CO₂/year</li>
+        <li><i class="fas fa-hard-hat"></i> 1M workers, unsafe conditions</li>
+        <li><i class="fas fa-trash-alt"></i> Demolition waste: 500–800 tk/ton dumping fee</li>
       </ul>
     </div>
-    <div style="flex: 1;">
-      <h2>the brick kiln disaster</h2>
-      <div class="card" style="background: var(--color-accent); color: white;">
-        <p>🔥 58% of Dhaka winter pollution<br>🌍 9.8 Mt CO₂ / year<br>🧱 1M workers in unsafe conditions, child labour<br>🌧️ seasonal unemployment, flooded kilns<br>💰 demolition companies pay 500–800 tk/ton to dump waste</p>
-        <p style="margin-top: 1rem;"><strong>we collect that waste at low cost → circular solution</strong></p>
+    <div class="bg-white-soft">
+      <h2 style="margin-top:0;">Bricko solution</h2>
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;"><span class="chip clay">1</span> <span><strong>collect</strong> demolition waste at market price (save dumping cost)</span></div>
+        <div style="display: flex; align-items: center; gap: 1rem;"><span class="chip clay">2</span> <span><strong>manufacture</strong> crush + 200‑ton press + no‑coal curing</span></div>
+        <div style="display: flex; align-items: center; gap: 1rem;"><span class="chip clay">3</span> <span><strong>distribute</strong> 70% B2B (Shanta, Seltec, govt) + 30% B2C rural</span></div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <i class="fas fa-recycle" style="font-size: 3rem; color: var(--clay); opacity: 0.7;"></i>
+        <p><strong>circular supply chain:</strong> 15% own fleet, 75% truck partners</p>
       </div>
     </div>
   </div>
 
-  <!-- PROPOSED SOLUTION (simple 3 steps) -->
-  <h2 style="margin-top: var(--space-lg);">solution · Bricko cycle</h2>
-  <div class="card-grid">
-    <div class="card"><span class="pill">1</span> <strong>waste collection</strong> – buy demolition waste at market price (demolishers save 500–800/tk disposal).</div>
-    <div class="card"><span class="pill green">2</span> <strong>manufacturing</strong> – crush + mix + 200‑ton press (30s) + no‑coal curing. no smoke, no soil.</div>
-    <div class="card"><span class="pill">3</span> <strong>distribution B2B 70% / B2C 30%</strong> – Shanta, Seltec, BTI, govt, rural homeowners. own fleet 15% + truck partners 75%.</div>
+  <!-- market context: PESTEL cards with icons -->
+  <h2>PESTEL · tailwinds</h2>
+  <div class="metric-grid">
+    <div class="metric-card"><i class="fas fa-gavel" style="font-size: 2rem; color: var(--clay);"></i> <strong>Political/Legal</strong> – SDG 2030, kiln closure orders, tax incentives for green.</div>
+    <div class="metric-card"><i class="fas fa-chart-pie" style="font-size: 2rem; color: var(--clay);"></i> <strong>Economic</strong> – 8.2% GDP, $15Bn real estate, Padma Bridge.</div>
+    <div class="metric-card"><i class="fas fa-users" style="font-size: 2rem; color: var(--clay);"></i> <strong>Social</strong> – rapid urbanisation, health awareness, 1M kiln workers.</div>
+    <div class="metric-card"><i class="fas fa-microchip" style="font-size: 2rem; color: var(--clay);"></i> <strong>Technological</strong> – 185M mobile, online marketplaces emerging.</div>
+    <div class="metric-card"><i class="fas fa-tree" style="font-size: 2rem; color: var(--clay);"></i> <strong>Environmental</strong> – 9.8Mt CO₂, 22kt daily waste, climate risk #7.</div>
+    <div class="metric-card"><i class="fas fa-file-contract" style="font-size: 2rem; color: var(--clay);"></i> <strong>Legal</strong> – Brick Burning Act 2019, waste rules 2021.</div>
   </div>
 
-  <!-- TARGET AUDIENCE & COMPETITOR compact -->
-  <div class="flex-row" style="gap: var(--space-md);">
-    <div style="flex: 1.2;">
-      <h2>target audience</h2>
-      <div style="display: flex; gap: var(--space-sm); flex-wrap: wrap;">
-        <div class="card" style="flex:1;"><strong>🏗️ B2B</strong><br>Seltec, Shanta, Concord, Rajuk, PWD, DOHS, BRAC, universities</div>
-        <div class="card" style="flex:1;"><strong>🏡 B2C</strong><br>urban/rural owners, diaspora, small contractors</div>
+  <!-- competitive landscape + graph visual -->
+  <div style="margin: 4rem 0;">
+    <h2>competitor edge</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Parameter</th><th>Fixed chimney</th><th>Zigzag</th><th>Mir Concrete</th><th style="background: var(--clay);">BRICKO</th></tr></thead>
+        <tbody>
+          <tr><td>Raw material</td><td>topsoil</td><td>topsoil</td><td>sand+cement</td><td><i class="fas fa-check-circle" style="color: var(--clay);"></i> construction waste</td></tr>
+          <tr><td>Energy use</td><td>very high</td><td>high</td><td>high</td><td>very low</td></tr>
+          <tr><td>Price (BDT)</td><td>8-12</td><td>10-14</td><td>18-22</td><td><strong>12 wholesale</strong></td></tr>
+          <tr><td>Env. compliance</td><td>poor</td><td>medium</td><td>medium</td><td>⭐ excellent</td></tr>
+          <tr class="highlight-row"><td>Regulatory risk</td><td>very high</td><td>medium</td><td>low</td><td>very low</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+      <div style="flex:1; background: white; border-radius: 30px; padding: 1.5rem;">
+        <h3>quality consistency</h3>
+        <div class="graph-bar"><span class="bar-label">Bricko</span><div class="bar-bg"><div class="bar-fill" style="width:98%"></div></div>98%</div>
+        <div class="graph-bar"><span class="bar-label">Local block</span><div class="bar-bg"><div class="bar-fill" style="width:70%; background: #aaa;"></div></div>70%</div>
+      </div>
+      <div style="flex:1; background: white; border-radius: 30px; padding: 1.5rem;">
+        <h3>CO₂ per brick (kg)</h3>
+        <div class="graph-bar"><span class="bar-label">Traditional</span><div class="bar-bg"><div class="bar-fill" style="width:100%; background:#B86B3F;"></div></div>1.2kg</div>
+        <div class="graph-bar"><span class="bar-label">Bricko</span><div class="bar-bg"><div class="bar-fill" style="width:12%"></div></div>0.15kg</div>
       </div>
     </div>
-    <div style="flex: 2;">
-      <h2>competitor landscape</h2>
-      <div class="table-wrapper">
-        <table>
-          <thead><tr><th>parameter</th><th>Fixed chimney</th><th>Zigzag</th><th>Mir Concrete</th><th style="background: var(--color-accent);">BRICKO</th></tr></thead>
-          <tbody>
-            <tr><td>raw material</td><td>topsoil</td><td>topsoil</td><td>sand+cement</td><td><strong>construction waste</strong></td></tr>
-            <tr><td>energy use</td><td>very high</td><td>high</td><td>high</td><td><strong>very low</strong></td></tr>
-            <tr><td>price (৳)</td><td>8-12</td><td>10-14</td><td>18-22</td><td><strong>18-24</strong></td></tr>
-            <tr><td>env. compliance</td><td>poor</td><td>medium</td><td>medium</td><td><strong>excellent</strong></td></tr>
-            <tr><td>regulatory risk</td><td>very high</td><td>medium</td><td>low</td><td><strong>very low</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="section-subhead" style="margin-top: 0;">* Bricko: cold compression, year‑round supply, high quality, 12 ৳ wholesale</p>
+  </div>
+
+  <!-- SDG impact visual with progress rings (simulated) -->
+  <h2>SDGs in action</h2>
+  <div class="metric-grid">
+    <div class="metric-card"><i class="fas fa-cloud-sun" style="font-size: 2rem; color: var(--clay);"></i> <strong>SDG 13</strong> climate – 80-90% CO₂ cut, biomass fuel</div>
+    <div class="metric-card"><i class="fas fa-city" style="font-size: 2rem; color: var(--clay);"></i> <strong>SDG 11</strong> sustainable cities – 80‑100y lifespan, thermal lag</div>
+    <div class="metric-card"><i class="fas fa-recycle" style="font-size: 2rem; color: var(--clay);"></i> <strong>SDG 12</strong> responsible – 100% recyclable, local materials</div>
+    <div class="metric-card"><i class="fas fa-seedling" style="font-size: 2rem; color: var(--clay);"></i> <strong>SDG 15</strong> life on land – stops topsoil stripping</div>
+  </div>
+
+  <!-- FINANCIAL DASHBOARD -->
+  <h2>financial momentum</h2>
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="glass-card" style="padding: 2rem;">
+      <h3>monthly (80% cap)</h3>
+      <div style="font-size: 3rem; font-weight: 200;">12.48 <span style="font-size: 1.2rem;">cr</span></div>
+      <p>revenue · 10.4M bricks</p>
+      <hr style="margin:1rem 0;">
+      <div class="graph-bar"><span class="bar-label">variable cost</span><div class="bar-bg"><div class="bar-fill" style="width:13.7%"></div></div>13.7%</div>
+      <div class="graph-bar"><span class="bar-label">gross profit</span><div class="bar-bg"><div class="bar-fill" style="width:86.3%"></div></div>86.3%</div>
+      <div class="graph-bar"><span class="bar-label">EBITDA margin</span><div class="bar-bg"><div class="bar-fill" style="width:85.9%"></div></div>85.9%</div>
+    </div>
+    <div class="glass-card" style="padding: 2rem;">
+      <h3>break‑even</h3>
+      <div style="font-size: 2.5rem;">0.4%</div>
+      <p>capacity utilization</p>
+      <div style="width:100%; background:#eee; height:12px; border-radius:20px; margin:1rem 0;"><div style="width:0.4%; height:12px; background: var(--clay); border-radius:20px;"></div></div>
+      <p><i class="fas fa-shield-alt"></i> ultra‑safe: even at 5% capacity → 53.4 lakh profit</p>
     </div>
   </div>
 
-  <!-- MARKETING & SDG cards -->
-  <h2>go‑to‑market & impact</h2>
-  <div class="card-grid">
-    <div class="card"><span class="pill">📢</span> <strong>channels</strong><br>highway billboards, hardware stores, B2B magazines, construction expos, WhatsApp Business, LinkedIn outreach, free samples.</div>
-    <div class="card"><span class="pill green">SDG 13</span> <strong>climate action</strong><br>no coal, 80‑90% CO₂ cut, biomass gas option · prevents black carbon.</div>
-    <div class="card"><span class="pill green">SDG 11+12</span> <strong>cities & responsible use</strong><br>lifespan 80‑100y vs clay 40‑50, 100% recyclable as road base, thermal lag saves AC energy.</div>
-    <div class="card"><span class="pill green">SDG 15</span> <strong>life on land</strong><br>stops topsoil stripping (1% arable land saved/yr), no tree cutting for fuel.</div>
+  <!-- three‑year forecast bars -->
+  <div style="background: white; border-radius: 40px; padding: 2rem; margin: 2rem 0;">
+    <h3>revenue & profit trajectory (cr BDT)</h3>
+    <div style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;">
+      <div><div style="height:150px; width:50px; background: linear-gradient(to top, var(--clay) 0%, var(--clay) 63%, #eee 63%); border-radius: 20px;"></div> Y1 97.3</div>
+      <div><div style="height:150px; width:50px; background: linear-gradient(to top, var(--clay) 0%, var(--clay) 89%, #eee 89%); border-radius: 20px;"></div> Y2 136.2</div>
+      <div><div style="height:150px; width:50px; background: linear-gradient(to top, var(--clay) 0%, var(--clay) 100%, #eee 100%); border-radius: 20px;"></div> Y3 153.2</div>
+    </div>
+    <div style="display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+      <div><span class="chip">net profit 27.4</span></div>
+      <div><span class="chip">net profit 41.0</span></div>
+      <div><span class="chip">net profit 46.6</span></div>
+    </div>
   </div>
 
-  <!-- FINANCIAL HIGHLIGHTS – key figures, executive summary style -->
-  <h2>financial ⚡ executive summary</h2>
-  <div class="kpi-grid">
-    <div class="kpi-item"><span class="stat-big">12.48 cr</span><div class="stat-label">monthly revenue (80%)</div></div>
-    <div class="kpi-item"><span class="stat-big">36.3%</span><div class="stat-label">EBITDA margin Y1</div></div>
-    <div class="kpi-item"><span class="stat-big">11 mo</span><div class="stat-label">payback</div></div>
-    <div class="kpi-item"><span class="stat-big">115 cr</span><div class="stat-label">3‑yr net profit</div></div>
-  </div>
-
-  <!-- simplified cost/revenue -->
-  <div class="flex-row" style="gap: var(--space-md);">
-    <div style="flex:1; background: var(--color-surface); border-radius: var(--border-radius); padding: var(--space-md);">
-      <h3 style="margin-top:0;">per 100 bricks cost</h3>
-      <ul style="columns:2;">
-        <li>RCA (70kg) 56 ৳</li>
-        <li>slag (15kg) 13.5</li>
-        <li>cement (10kg) 85</li>
-        <li>additives + water 2.35</li>
-        <li><strong>total 156.85 ৳</strong></li>
-        <li>= 1.57 ৳/brick</li>
+  <!-- investment & payback with timeline -->
+  <div class="grid-2" style="margin: 4rem 0;">
+    <div>
+      <h2>capital & returns</h2>
+      <ul class="icon-list">
+        <li><i class="fas fa-coins"></i> total investment <strong>3.5 cr</strong> (100% equity)</li>
+        <li><i class="fas fa-clock"></i> payback <strong>11 months</strong> from ops start</li>
+        <li><i class="fas fa-chart-line"></i> IRR 61.8% · NPV @15% 67.3 cr</li>
+        <li><i class="fas fa-balance-scale"></i> cumulative cash Y3: 125 cr</li>
       </ul>
     </div>
-    <div style="flex:1; background: var(--color-surface); border-radius: var(--border-radius); padding: var(--space-md);">
-      <h3 style="margin-top:0;">unit economics</h3>
-      <p>💰 selling price <strong>12 ৳/brick</strong><br>📉 variable cost 1.65 ৳<br>📈 contribution margin <strong>10.35 ৳ (86.3%)</strong><br>🔻 break‑even <strong>42,512 bricks/month (0.4% capacity)</strong></p>
-    </div>
-  </div>
-
-  <!-- investment & payback table short -->
-  <div class="table-wrapper">
-    <table>
-      <thead><tr><th>investment (BDT)</th><th>amount</th><th>year 1 cashflow</th><th>year 2</th><th>year 3</th></tr></thead>
-      <tbody>
-        <tr><td>tunnel kiln system</td><td>2,00,00,000</td><td rowspan="3" style="vertical-align: middle;">+37.5 cr cumulative</td><td rowspan="3" style="vertical-align: middle;">+78.5 cr</td><td rowspan="3" style="vertical-align: middle;">+125.1 cr</td></tr>
-        <tr><td>curing, land, handling</td><td>85,00,000</td></tr>
-        <tr><td>working capital + contingency</td><td>60,00,000</td></tr>
-        <tr class="accent-row"><td><strong>total capex</strong></td><td><strong>3.5 cr (all equity)</strong></td><td colspan="3">NPV @15% = 67.3 cr · IRR 61.8%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 3‑year forecast mini -->
-  <h3>three‑year forecast (BDT crore)</h3>
-  <div class="table-wrapper">
-    <table>
-      <thead><tr><th>metric</th><th>year 1</th><th>year 2</th><th>year 3</th></tr></thead>
-      <tbody>
-        <tr><td>capacity util.</td><td>65%</td><td>85%</td><td>95%</td></tr>
-        <tr><td>units sold (M bricks)</td><td>81.1</td><td>110.5</td><td>123.5</td></tr>
-        <tr><td>revenue</td><td>97.3</td><td>136.2</td><td>153.2</td></tr>
-        <tr><td>net profit (after tax)</td><td>27.4</td><td>41.0</td><td>46.6</td></tr>
-        <tr><td>EBITDA margin</td><td>36.3%</td><td>38.8%</td><td>39.2%</td></tr>
-        <tr><td>net margin</td><td>28.1%</td><td>30.1%</td><td>30.4%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- risk analysis + mitigation -->
-  <div style="display: flex; gap: var(--space-md); margin: var(--space-lg) 0;">
-    <div style="flex:1;">
-      <h2>risk & mitigation</h2>
-      <div class="card" style="background: white;">
-        <p><span class="pill" style="background: var(--color-dominant);">cement +20%</span> margin -2pp → bulk contracts, fly ash substitution<br>
-        <span class="pill" style="background: var(--color-dominant);">demand ↓</span> break‑even 0.7% capacity, diversify 50+ developers<br>
-        <span class="pill" style="background: var(--color-dominant);">competitor</span> first‑mover scale, BSTI certification<br>
-        <span class="pill" style="background: var(--color-dominant);">worst case</span> (materials +20%, price -15%, fixed +50%) → still 8.02 cr monthly profit</p>
+    <div>
+      <h3>implementation timeline</h3>
+      <div class="timeline">
+        <span class="timeline-step">mo1‑3</span>
+        <span class="timeline-step">mo4‑9</span>
+        <span class="timeline-step">mo10‑12</span>
+        <span class="timeline-step">mo13‑18</span>
       </div>
-    </div>
-    <div style="flex:1;">
-      <h2>implementation phases</h2>
-      <div style="background: white; border-radius: var(--border-radius); padding: var(--space-md);">
-        <p>📋 <strong>mo 1‑3</strong> feasibility, LOIs, env. clearance<br>
-        🏭 <strong>mo 4‑9</strong> construction, kiln order, stockpile<br>
-        ⚙️ <strong>mo 10‑12</strong> trial 40% → cash flow + by month 11<br>
-        📈 <strong>mo 13‑18</strong> 80% capacity, BSTI, B2C pilot</p>
-      </div>
+      <p style="margin-top: 2rem;">feasibility, LOIs, clearance → construction → trial & cashflow + → scale 80% & BSTI</p>
     </div>
   </div>
 
-  <!-- KPIs monitoring + investment summary compact -->
-  <div class="accent-bg-light">
-    <h2 style="border-bottom-color: var(--color-dominant);">investment highlights</h2>
-    <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-sm);">
-      <div class="card" style="box-shadow: none;"><strong>3.5 cr equity</strong> · debt free</div>
-      <div class="card" style="box-shadow: none;"><strong>11 mo payback</strong> · 61.8% IRR</div>
-      <div class="card" style="box-shadow: none;"><strong>0.7% B/E</strong> ultra‑safe</div>
-      <div class="card" style="box-shadow: none;"><strong>397 kt CO₂</strong> avoided / yr (Y3)</div>
-      <div class="card" style="box-shadow: none;"><strong>first‑mover</strong> · green building mandates</div>
-      <div class="card" style="box-shadow: none;"><strong>multi‑fuel</strong> (biomass, gas)</div>
+  <!-- risk dashboard mini -->
+  <div style="background: var(--deep-earth); border-radius: 50px; padding: 2rem; color: white;">
+    <h2 style="color:white; border-bottom-color: var(--clay);">risk · sensitivity</h2>
+    <div class="metric-grid" style="color: var(--charcoal);">
+      <div class="metric-card"><i class="fas fa-exclamation-triangle" style="color: var(--clay);"></i> cement +20% → -2pp margin <br> <span class="chip">mitigation: fly ash</span></div>
+      <div class="metric-card"><i class="fas fa-chart-line" style="color: var(--clay);"></i> demand drop → break‑even 0.7% cap</div>
+      <div class="metric-card"><i class="fas fa-building" style="color: var(--clay);"></i> competitor entry → first‑mover scale</div>
+      <div class="metric-card"><i class="fas fa-flask" style="color: var(--clay);"></i> worst case (price -15%, material +20%) → still 8.02 cr profit monthly</div>
     </div>
-    <p style="margin-top: 1rem; font-style: italic; color: var(--color-dominant);">“Sustainability and profitability reinforce each other” — every brick generates revenue + impact</p>
   </div>
 
-  <!-- footer / SDG & final -->
-  <hr>
-  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-    <div><span class="pill green" style="background: var(--color-secondary);">SDG 7</span> <span class="pill green" style="background: var(--color-secondary);">SDG 13</span> <span class="pill green" style="background: var(--color-secondary);">SDG 12</span> <span class="pill green" style="background: var(--color-secondary);">SDG 11</span> <span class="pill green" style="background: var(--color-secondary);">SDG 15</span></div>
-    <div>📍 Savar, Dhaka · 20,000 m² · tunnel kiln 500k/day</div>
+  <!-- KPIs & monitoring -->
+  <div style="margin: 3rem 0;">
+    <h2>key performance indicators</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+      <div class="glass-card" style="padding: 1rem 2rem;"><i class="fas fa-cubes"></i> daily output ≥400k <span style="color:var(--clay);">▼350k red flag</span></div>
+      <div class="glass-card" style="padding: 1rem 2rem;"><i class="fas fa-check-circle"></i> yield ≥98%</div>
+      <div class="glass-card" style="padding: 1rem 2rem;"><i class="fas fa-hand-holding-usd"></i> payment days ≤60</div>
+      <div class="glass-card" style="padding: 1rem 2rem;"><i class="fas fa-trash-alt"></i> material wastage <2%</div>
+    </div>
   </div>
-  <div class="footnote">
-    Bricko — from waste to worth. Data based on feasibility, HULT NSU semi presentation · all financials in BDT.
+
+  <!-- closing statement -->
+  <div style="text-align: center; padding: 3rem; background: var(--pure-white); border-radius: 80px; margin: 3rem 0;">
+    <i class="fas fa-quote-right" style="font-size: 4rem; color: var(--clay); opacity: 0.3;"></i>
+    <p style="font-size: 1.8rem; font-weight: 300; max-width: 700px; margin: 1rem auto;">Sustainability and profitability are not trade‑offs — they reinforce each other.</p>
+    <p><span class="chip clay">Bricko</span> <span class="chip">waste‑to‑value</span> <span class="chip">circular economy</span></p>
+  </div>
+
+  <div class="footer">
+    <i class="fas fa-brick"></i> Savar industrial zone · 20,000 m² · tunnel kiln 500k/day · multi‑fuel (biomass) · BSTI ready
   </div>
 
 </div> <!-- container -->
