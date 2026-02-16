@@ -560,5 +560,39 @@
   </div>
 
 </div> <!-- container -->
+
+  <!-- Horizontal button linking to an external page -->
+<a href="Financials.html" target="_blank" rel="noopener noreferrer" class="horizontal-button">
+  Visit Example
+</a>
+
+<style>
+  /* Modern button styling – horizontal / inline-block by default */
+  .horizontal-button {
+    display: inline-block;            /* sits horizontally with text/other buttons */
+    background-color: #d9734c;        /* accent color – matches Bricko theme */
+    color: white;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;            /* horizontal padding for a pill shape */
+    border-radius: 40px;               /* fully rounded = horizontal button */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .horizontal-button:hover {
+    background-color: #b86b3f;        /* darker shade on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .horizontal-button:active {
+    transform: translateY(0);
+  }
+</style>
 </body>
 </html>
